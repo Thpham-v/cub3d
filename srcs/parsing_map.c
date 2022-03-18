@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:35:48 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/18 05:12:17 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/18 13:37:30 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 int	error_map(char *line)
 {
 	int	i;
-
+	int	pos;
+	
 	i = 0;
+	pos = 0;
 	while (line[i])
 	{
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+			pos++;
 		if (line[i] == '1' || line[i] == '0' || line[i] == 'N' || line[i] == ' ' ||
 			line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
 			i++;
 		else
 			return (-1);
+	}
+	if (pos > 1)
+	{
+		printf("Incorrect nbr joueur\n");
+		return (-2);
 	}
 	return (0);
 }
@@ -82,7 +91,7 @@ int	parsing_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (error_map(map[i]) == -1)
+		if (error_map(map[i]) != 0)
 			return (-1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 #    By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 15:16:31 by thpham-v          #+#    #+#              #
-#    Updated: 2022/03/18 04:53:10 by thpham-v         ###   ########.fr        #
+#    Updated: 2022/03/19 03:02:44 by thpham-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,16 @@ MLX_DIR			=	./minilibx-linux/
 SRC_DIR			=	./srcs/
 INC_DIR			=	./inc/cub3d.h
 LIBFT			=	./libft/
-SRCS			=	main.c			\
-					parsing_map.c
+SRCS			=	main.c					\
+					parsing_map.c			\
+					get_next_line.c			\
+					get_next_line_utils.c	\
+					create_map.c
 					
 SRC_BASENAME	=	$(addprefix $(SRC_DIR), $(SRCS))		
 OBJS			=	$(SRC_BASENAME:.c=.o)
 CC				=	clang 
-FLAGS			=	-Wall -Wextra -fsanitize=address -I $(MLX_DIR) -I $(INC_DIR) -I ./inc/ -I $(LIBFT) #-Werror
+FLAGS			=	-Wall -Wextra -I $(MLX_DIR) -I $(INC_DIR) -I ./inc/ -I $(LIBFT) #-Werror
 
 .c.o		:
 				$(CC) $(FLAGS) -Imlx -c $< -o $@

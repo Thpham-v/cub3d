@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:36:29 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/18 05:11:00 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/19 02:30:42 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,20 @@
 
 int	main(int argc, char **argv)
 {
+	t_var var;
 	int	i;
 	
 	i = 0;
-	char	**map;
-	
-	map = malloc(sizeof(char *) * 5);
-	while (i != 3)
+	ft_bzero(&var, sizeof(t_var));
+	if ((ft_read_line(argv[1], &var, 1) != -1))
 	{
-		map[i] = malloc(sizeof(char) * 10);
+		ft_malloc_map(&var);
+		ft_final_map(argv[1], &var, 1);
+	}
+	while (i < var.nb_l)
+	{
+		printf("%s\n", var.map[i]);
 		i++;
-	}	
-	map[0] = "1 1 1 1 1";
-	map[1] = "1 0 0 0 1";
-	map[2] = "1 1 0 1 1";
-	map[3] = "1 1 1 1 1";
-	map[4] = NULL;
-	/*printf("%s\n", map[0]);
-	printf("%s\n", map[1]);	
-	printf("%s\n", map[2]);*/
-	printf("%d\n", parsing_map(map));
+	}
 	return (0);
 }

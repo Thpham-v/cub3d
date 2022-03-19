@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vintran <vintran@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 12:35:52 by vintran           #+#    #+#             */
-/*   Updated: 2021/12/22 15:57:54 by vintran          ###   ########.fr       */
+/*   Updated: 2022/03/19 02:40:09 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(const char *s, char c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdup(const char *s);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(char *s1, char *s2);
 int			ft_strlcat(char *dst, const char *src, int size);
 int			ft_strlcpy(char *dst, const char *src, int dstsize);
 int			ft_strlen(const char *s);

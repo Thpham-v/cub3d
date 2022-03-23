@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:38:05 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/19 02:32:46 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:35:42 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_var
 	int	fd;
 }				t_var;
 
-int	parsing_map(char **map);
+int	parsing_map(t_var *var);
 int	open_file(char *file, t_var *var);
 int	ft_read_line(char *file, t_var *var, int ret);
 int	ft_malloc_map(t_var *var);
@@ -43,5 +43,6 @@ char	*ft_get_temp(char *str);
 char	*ft_get_line(char *str);
 int		ft_is_break_line(char *str);
 int		ft_free(char *str);
+void	ft_free_tab(char **tab);
 
 #endif

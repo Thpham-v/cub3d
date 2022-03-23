@@ -6,30 +6,36 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:35:48 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/18 13:37:30 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:37:04 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	error_map(char *line)
+int	error_map(char **map)
 {
 	int	i;
-	int	pos;
+	int	j;
+	int	pos_player;
 	
 	i = 0;
-	pos = 0;
-	while (line[i])
+	pos_player = 0;
+	while (map[i])
 	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-			pos++;
-		if (line[i] == '1' || line[i] == '0' || line[i] == 'N' || line[i] == ' ' ||
-			line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-			i++;
-		else
-			return (-1);
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+				pos_player++;
+			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == ' ' ||
+				map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+				j++;
+			else
+				return (-1);
+		}
+		i++;
 	}
-	if (pos > 1)
+	if (pos_player > 1)
 	{
 		printf("Incorrect nbr joueur\n");
 		return (-2);
@@ -37,7 +43,7 @@ int	error_map(char *line)
 	return (0);
 }
 
-int	open_or_close(int len, char **map)
+/*int	open_or_close(char **map)
 {
 	int j;
 	
@@ -82,20 +88,13 @@ int	open_or_close(int len, char **map)
 		len--;
 	}
 	return (0);
-}
+}*/
 
-int	parsing_map(char **map)
+int	parsing_map(t_var *var)
 {
-	int	i;
-	
-	i = 0;
-	while (map[i])
-	{
-		if (error_map(map[i]) != 0)
-			return (-1);
-		i++;
-	}
-	if (open_or_close(i - 1, map) == -2)
-		return (-2);
+	if (error_map(var->map) != 0)
+		return (-1);
+	//if (open_or_close(var->map) == -2)
+		//return (-2);
 	return (0);
 }

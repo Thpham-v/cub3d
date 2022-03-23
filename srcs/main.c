@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:36:29 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/19 02:30:42 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:30:00 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ int	main(int argc, char **argv)
 		ft_malloc_map(&var);
 		ft_final_map(argv[1], &var, 1);
 	}
-	while (i < var.nb_l)
+	if (parsing_map(&var) == 0)
 	{
-		printf("%s\n", var.map[i]);
-		i++;
+		while (i < var.nb_l - 1)
+		{
+			printf("%s\n", var.map[i]);
+			i++;
+		}
 	}
+	ft_free_tab(var.map);	
 	return (0);
 }

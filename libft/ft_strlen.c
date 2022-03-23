@@ -6,18 +6,20 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 12:32:52 by vintran           #+#    #+#             */
-/*   Updated: 2022/03/19 02:39:35 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/23 02:15:44 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *s)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
-	while (s[i])
+	while (str[i])
 		i++;
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 02:10:03 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/19 03:08:04 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/03/23 03:11:14 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ int	ft_read_line(char *file, t_var *var, int ret)
 		return (-1);
 	while (ret)
 	{
-		printf("passage 1\n");
 		ret = get_next_line(var->fd, &line, 1);
-		printf("passage 2\n");
 		if (line[0] != '\0')
 		{
 			nb_char_temp = ft_strlen(line);
@@ -63,6 +61,7 @@ int	ft_read_line(char *file, t_var *var, int ret)
 		}
 		free(line);
 	}
+	var->nb_l++;
 	return (ret);
 }
 
@@ -87,9 +86,7 @@ int	ft_malloc_map(t_var *var)
 void	ft_final_map(char *file, t_var *var, int ret)
 {
 	int		i;
-	int		j;
 	char	*line;
-	char	**tab_char;
 
 	i = 0;
 	ret = 1;
@@ -99,16 +96,9 @@ void	ft_final_map(char *file, t_var *var, int ret)
 		ret = get_next_line(var->fd, &line, 1);
 		if (line[0] != '\0')
 		{
-			tab_char = ft_split(line, '\0');
-			j = 0;
-			while (tab_char[j])
-			{
-				var->map[i][j] = tab_char[i][j];
-				j++;
-			}
-			ft_free_tab(tab_char);
+			var->map[i] = line;
 			i++;
 		}
-		free(line);
 	}
+	var->map[i] = NULL;
 }

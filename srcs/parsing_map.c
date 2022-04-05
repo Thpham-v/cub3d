@@ -6,36 +6,42 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:35:48 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/23 03:37:04 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/05 03:51:37 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	error_map(char **map)
+int	error_map(t_var *var)
 {
-	int	i;
-	int	j;
-	int	pos_player;
+	int	x;
+	int	y;
+	int	count;
 	
-	i = 0;
-	pos_player = 0;
-	while (map[i])
+	count = 0;
+	x = 0;
+	while (var->map[x])
 	{
-		j = 0;
-		while (map[i][j])
+		y = 0;
+		while (var->map[x][y])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
-				pos_player++;
-			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == ' ' ||
-				map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
-				j++;
+			if (var->map[x][y] == 'N' || var->map[x][y] == 'S' || var->map[x][y] == 'E' || var->map[x][y] == 'W')
+			{
+				var->pos_x = x;
+				var->pos_y = y;
+				var->player_dir = var->map[x][y];
+				var->map[x][y] = '0';
+				count++;
+			}
+			if (var->map[x][y] == '1' || var->map[x][y] == '0' || var->map[x][y] == 'N' || var->map[x][y] == ' ' ||
+				var->map[x][y] == 'S' || var->map[x][y] == 'E' || var->map[x][y] == 'W')
+				y++;
 			else
 				return (-1);
 		}
-		i++;
+		x++;
 	}
-	if (pos_player > 1)
+	if (count > 1)				// fonction gestion de toute les erreurs map a faire
 	{
 		printf("Incorrect nbr joueur\n");
 		return (-2);
@@ -43,58 +49,41 @@ int	error_map(char **map)
 	return (0);
 }
 
-/*int	open_or_close(char **map)
+int		check_arround(t_var *var, int x, int y)
 {
-	int j;
-	
-	j = 0;
-	while (map[0][j]) // premier ligne de la map
-	{
-		if (map[0][j] != '1' && map[0][j] != ' ')
-		{
-			printf("Map ouverte 1\n");
-			return (-2);
-		}
-		j++;
-	}
-	j = 0;
-	while (map[len][j]) // derniere ligne de la map
-	{
-		if (map[len][j] != '1' && map[len][j] != ' ')
-		{
-			printf("Map ouverte 2\n");
-			return (-2);
-		}
-		j++;
-	}
-	len--;
-	while (len != 0) // milieu de map
-	{
-		j = 0;
-		while (map[len][j])
-		{
-			if (map[len][0] != '1')
-			{
-			printf("Map ouverte 3\n");
-			return (-2);
-			}
-			j++;
-		}
-		if (map[len][j - 1] != '1')
-		{
-			printf("Map ouverte 4\n");
-			return (-2);
-		}
-		len--;
-	}
-	return (0);
-}*/
+	if (var->map[x][y - 2] != '0' && var->map[x][y - 2] != '1')
+		return (0);
+	if (var->map[x][y + 2] != '0' && var->map[x][y + 2] != '1')
+		return (0);
+	if (var->map[x - 1][y] != '0' && var->map[x - 1][y] != '1')
+		return (0);
+	if (var->map[x + 1][y] != '0' && var->map[x + 1][y] != '1')
+		return (0);
+	return (1);
+}
 
 int	parsing_map(t_var *var)
 {
-	if (error_map(var->map) != 0)
+	int x;
+	int y;
+	
+	if (error_map(var) != 0)
 		return (-1);
-	//if (open_or_close(var->map) == -2)
-		//return (-2);
+	x = 0;
+	while (var->map[x])
+	{
+		y = 0;
+		while (var->map[x][y])
+		{
+			if (var->map[x][y] == '0')
+				if (!check_arround(var, x, y))
+				{
+					printf("The map is not closed\n");
+					return (-1);
+				}
+			y++;
+		}
+		x++;
+	}
 	return (0);
 }

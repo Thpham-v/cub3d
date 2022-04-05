@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:38:05 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/23 03:35:42 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/05 03:00:00 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct	s_var
 	int	nb_l;
 	int	nb_char;
 	int	fd;
+	int	pos_x;
+	int	pos_y;
+	char player_dir;
 }				t_var;
 
 int	parsing_map(t_var *var);

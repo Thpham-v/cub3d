@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:38:05 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/05 03:00:00 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/18 06:44:43 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,22 @@
 
 typedef struct	s_var
 {
-	char **map;
-	char *line;
-	int	nb_l;
-	int	nb_char;
-	int	fd;
-	int	pos_x;
-	int	pos_y;
-	char player_dir;
+	char		**map;
+	char		*line;
+	int			nb_l;
+	int			nb_char;
+	int			fd;
+	int			pos_x;
+	int			pos_y;
+	char		player_dir;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*sol;
+	char		*plafond;
+	int			c;
+	int			f;
 }				t_var;
 
 int	parsing_map(t_var *var);
@@ -47,5 +55,6 @@ char	*ft_get_line(char *str);
 int		ft_is_break_line(char *str);
 int		ft_free(char *str);
 void	ft_free_tab(char **tab);
+void	get_map_params(char *line, t_var *var);
 
 #endif

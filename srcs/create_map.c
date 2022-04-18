@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 02:10:03 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/23 03:11:14 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/18 04:22:01 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	open_file(char *file, t_var *var)
 	}
 	var->fd = open(file, O_RDONLY);
 	if (var->fd == -1)
+	{
+		printf("open() file .cub failed\n");
 		return (-1);
+	}
 	return (0);
 }
 

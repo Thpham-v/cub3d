@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:36:29 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/18 06:44:50 by thpham-v         ###   ########.fr       */
+/*   Created: 2022/04/18 06:17:08 by thpham-v          #+#    #+#             */
+/*   Updated: 2022/04/18 06:20:05 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int		ft_exit_cub(t_var *var)
 {
-	t_var var;
-	int	i;
-	
-	i = 0;
-	ft_bzero(&var, sizeof(t_var));
-	if ((ft_read_line(argv[1], &var, 1) != -1))
-	{
-		ft_malloc_map(&var);
-		ft_final_map(argv[1], &var, 1);
-	}
-	if (get_map_params())
-	if (parsing_map(&var) == 0)
-	{
-		while (i < var.nb_l - 1)
-		{
-			printf("%s\n", var.map[i]);
-			i++;
-		}
-	}
-	ft_free_tab(var.map);	
-	return (0);
+	free_map(var);
+	free(var->line);
+	//if (var->file)
+		//free(var->file);
+	if (var->no)
+		free(var->no);
+	if (var->so)
+		free(var->so);
+	if (var->we)
+		free(var->we);
+	if (var->ea)
+		free(var->ea);
+	mlx_destroy(var);
+	exit(0);
+}
+
+void	ft_error(t_var *var, char *error_msg)
+{
+	ft_putstr("Error\n");
+	ft_putstr(error_msg);
+	ft_exit_cub(var);
 }

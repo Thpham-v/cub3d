@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 06:17:08 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/22 09:34:31 by thpham-v         ###   ########.fr       */
+/*   Created: 2022/04/20 05:46:26 by thpham-v          #+#    #+#             */
+/*   Updated: 2022/04/20 05:46:58 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "libft.h"
 
-int		ft_exit(t_var *var)
+char	*ft_strndup(const char *s, size_t n)
 {
-	ft_free_map(var);
-	if (var->line)
-		free(var->line);
-	free(var->temp);
-	if (var->no)
-		free(var->no);
-	if (var->so)
-		free(var->so);
-	if (var->we)
-		free(var->we);
-	if (var->ea)
-		free(var->ea);
-	exit(0);
-}
+	char	*dst;
+	size_t	slen;
+	size_t	i;
 
-void	ft_error(t_var *var, char *error_msg)
-{
-	ft_putstr("Error\n");
-	ft_putstr(error_msg);
+	slen = ft_strlen(s);
+	if (n > slen)
+		n = slen;
+	if (!(dst = malloc(sizeof(char) * (n + 1))))
+		return (NULL);
+	i = 0;
+	while (i < n)
+	{
+		dst[i] = s[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

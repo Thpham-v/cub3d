@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:35:48 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/16 02:56:45 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/22 06:13:47 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	error_map(t_var *var)
 				var->player_dir = var->map[x][y];
 				var->map[x][y] = '0';
 				count++;
+			}
+			if (var->map[x][0] == ' ')
+			{
+				while (var->map[x][y] == ' ')
+					y++;
 			}
 			if (var->map[x][y] == '1' || var->map[x][y] == '0' || var->map[x][y] == 'N' ||
 				var->map[x][y] == 'S' || var->map[x][y] == 'E' || var->map[x][y] == 'W')

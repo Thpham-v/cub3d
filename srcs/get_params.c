@@ -6,11 +6,43 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 04:15:10 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/18 06:15:48 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/22 09:44:16 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		is_map_params(t_var *var)
+{
+	if (var->no == NULL || var->so == NULL ||
+	var->we == NULL || var->ea == NULL)
+	//var->sp == NULL || !var->rx || !var->ry)
+		return (0);
+	if (var->f == -1 || var->c == -1)
+		return (0);
+	return (1);
+}
+
+int		is_empty(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+int		through_space(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	return (i);
+}
 
 void	get_path_texture(t_var *var, char *line, char **path)
 {
@@ -46,8 +78,8 @@ void	get_rgb(t_var *var, char *line, int *color)
 		line += 2;
 	else
 		line += 1;
-	if (!check_color_line(line) || *color != -1)
-		ft_error(var, "Invalid RGB precision in .cub\n");
+	//if (!check_color_line(line) || *color != -1)
+		//ft_error(var, "Invalid RGB precision in .cub\n");
 	r = ft_atoi(line);
 	line = ft_strchr(line, ',') + 1;
 	g = ft_atoi(line);
@@ -82,7 +114,42 @@ void	get_map_params(char *line, t_var *var)
 	else if (!is_empty(line))
 	{
 		printf("Invalid precision in .cub\n");
-		return ;
+		ft_exit(var);
 	}
 }
 
+void	parsing_file(char *file, t_var *var)
+{
+	int		ret;
+
+	ret = 1;
+	if (open_file(file, var) == -1)
+		return ;
+	while (ret == 1)
+	{
+		ret = get_next_line(var->fd, &var->line, &var->temp, 1);
+		if (!is_map_params(var))
+		{
+			get_map_params(var->line, var);
+			var->what_line++;
+		}
+		else if (is_empty(var->line) && var->nb_l == 0)
+			var->what_line++;
+		free(var->line);
+		var->line = NULL;
+	}
+	close(var->fd);
+	if (!is_map_params(var))
+		exit(1);
+}
+
+/*int	pars(char *file, t_var *var)
+{
+	if ((ft_read_line(argv[1], &var, 1) != -1))
+	{
+		ft_malloc_map(&var);
+		ft_final_map(argv[1], &var, 1);
+	}
+	if (parsing_map(&var) == 0)
+
+}*/

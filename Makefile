@@ -6,7 +6,7 @@
 #    By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 15:16:31 by thpham-v          #+#    #+#              #
-#    Updated: 2022/04/22 06:55:18 by thpham-v         ###   ########.fr        #
+#    Updated: 2022/04/25 06:07:40 by thpham-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_DIR			=	./srcs/
 INC_DIR			=	./inc/cub3d.h
 LIBFT			=	./libft/
 SRCS			=	main.c					\
-					parsing_map.c			\
+					parsing.c			\
 					get_next_line.c			\
 					get_next_line_utils.c	\
 					create_map.c			\

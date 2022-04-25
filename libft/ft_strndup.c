@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 05:46:26 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/20 05:46:58 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/25 06:39:31 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	*ft_strndup(const char *s, size_t n)
 	slen = ft_strlen(s);
 	if (n > slen)
 		n = slen;
-	if (!(dst = malloc(sizeof(char) * (n + 1))))
+	dst = malloc(sizeof(char) * (n + 1));
+	if (!dst)
 		return (NULL);
 	i = 0;
 	while (i < n)

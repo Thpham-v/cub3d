@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:38:05 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/25 07:22:20 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:49:33 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_var
 	int		fd;
 	int		pos_x;
 	int		pos_y;
+	int		x;
+	int		y;
 	int		count;
 	char	player_dir;
 	char	*no;

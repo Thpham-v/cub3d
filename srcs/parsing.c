@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 16:35:48 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/25 07:45:28 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:54:13 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	error_bis(t_var *var)
 {
-	if (var->map[var->pos_x][0] == ' ')
+	if (var->map[var->x][0] == ' ')
 	{
-		while (var->map[var->pos_x][var->pos_y] == ' ')
-			var->pos_y++;
+		while (var->map[var->x][var->y] == ' ')
+			var->y++;
 	}
-	if (var->map[var->pos_x][var->pos_y] == '1'
-		|| var->map[var->pos_x][var->pos_y] == '0'
-			|| var->map[var->pos_x][var->pos_y] == 'N'
-				|| var->map[var->pos_x][var->pos_y] == 'S'
-					|| var->map[var->pos_x][var->pos_y] == 'E'
-						|| var->map[var->pos_x][var->pos_y] == 'W')
-		var->pos_y++;
+	if (var->map[var->x][var->y] == '1'
+		|| var->map[var->x][var->y] == '0'
+			|| var->map[var->x][var->y] == 'N'
+				|| var->map[var->x][var->y] == 'S'
+					|| var->map[var->x][var->y] == 'E'
+						|| var->map[var->x][var->y] == 'W')
+		var->y++;
 	else
 		return (-1);
 	return (0);
@@ -33,24 +33,26 @@ int	error_bis(t_var *var)
 
 int	error_map(t_var *var)
 {
-	while (var->map[var->pos_x])
+	while (var->map[var->x])
 	{
-		var->pos_y = 0;
-		while (var->map[var->pos_x][var->pos_y])
+		var->y = 0;
+		while (var->map[var->x][var->y])
 		{
-			if (var->map[var->pos_x][var->pos_y] == 'N'
-				|| var->map[var->pos_x][var->pos_y] == 'S'
-					|| var->map[var->pos_x][var->pos_y] == 'E'
-						|| var->map[var->pos_x][var->pos_y] == 'W')
+			if (var->map[var->x][var->y] == 'N'
+				|| var->map[var->x][var->y] == 'S'
+					|| var->map[var->x][var->y] == 'E'
+						|| var->map[var->x][var->y] == 'W')
 			{
-				var->player_dir = var->map[var->pos_x][var->pos_y];
-				var->map[var->pos_x][var->pos_y] = '0';
+				var->player_dir = var->map[var->x][var->y];
+				var->pos_x = var->x;
+				var->pos_y = var->y;
+				var->map[var->x][var->y] = '0';
 				var->count++;
 			}
 			if (error_bis(var) != 0)
 				return (-1);
 		}
-		var->pos_x++;
+		var->x++;
 	}
 	if (var->count != 1)
 		return (-2);

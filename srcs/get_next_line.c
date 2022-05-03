@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 13:57:40 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/03/23 02:11:40 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/25 06:47:06 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,28 @@ int	ft_free(char *str)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line, int ret)
+int	get_next_line(int fd, char **line, char **temp, int ret)
 {
-	static char	*temp;
 	char		buff[BUFFER_SIZE + 1];
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	while (!ft_is_break_line(temp) && ret != 0)
+	while (!ft_is_break_line(*temp) && ret != 0)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
 		if (ret == -1)
 			return (-1);
 		buff[ret] = '\0';
-		temp = ft_strjoin(temp, buff);
+		*temp = ft_strjoin(*temp, buff);
 	}
-	*line = ft_get_line(temp);
-	temp = ft_get_temp(temp);
-	if (!*line || !temp)
+	*line = ft_get_line(*temp);
+	*temp = ft_get_temp(*temp);
+	if (!*line || !*temp)
 		return (-1);
 	if (ret == 0)
 	{
-		ret = ft_free(temp);
-		temp = NULL;
+		ret = ft_free(*temp);
+		*temp = NULL;
 		return (0);
 	}
 	return (1);

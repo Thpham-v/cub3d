@@ -6,7 +6,7 @@
 #    By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 15:16:31 by thpham-v          #+#    #+#              #
-#    Updated: 2022/03/19 03:02:44 by thpham-v         ###   ########.fr        #
+#    Updated: 2022/05/04 00:44:31 by thpham-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,23 @@ SRC_DIR			=	./srcs/
 INC_DIR			=	./inc/cub3d.h
 LIBFT			=	./libft/
 SRCS			=	main.c					\
-					parsing_map.c			\
+					parsing.c				\
 					get_next_line.c			\
 					get_next_line_utils.c	\
-					create_map.c
+					create_map.c			\
+					get_params.c			\
+					utils.c					\
+					set_raycasting.c		\
+					cub3d.c					\
+					moves.c					\
+					rotate_player.c			\
+					raycasting.c			\
+					set_ray.c				\
+					get_wall_and_draw.c		\
+					set_textures.c			\
+					events.c				\
+					display_wall_line.c		\
+					exit.c
 					
 SRC_BASENAME	=	$(addprefix $(SRC_DIR), $(SRCS))		
 OBJS			=	$(SRC_BASENAME:.c=.o)

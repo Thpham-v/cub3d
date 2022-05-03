@@ -6,33 +6,46 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 06:17:08 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/18 06:20:05 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/05/04 00:39:40 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_exit_cub(t_var *var)
+int	is_map_params(t_var *var)
 {
-	free_map(var);
-	free(var->line);
-	//if (var->file)
-		//free(var->file);
-	if (var->no)
-		free(var->no);
-	if (var->so)
-		free(var->so);
-	if (var->we)
-		free(var->we);
-	if (var->ea)
-		free(var->ea);
-	mlx_destroy(var);
-	exit(0);
+	if (var->no == NULL || var->so == NULL
+		|| var->we == NULL || var->ea == NULL)
+		return (0);
+	if (var->f == -1 || var->c == -1)
+		return (0);
+	return (1);
+}
+
+int	is_empty(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' || *str != '\t')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+int	skip_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ')
+		i++;
+	return (i);
 }
 
 void	ft_error(t_var *var, char *error_msg)
 {
 	ft_putstr("Error\n");
 	ft_putstr(error_msg);
-	ft_exit_cub(var);
+	ft_exit(var);
 }

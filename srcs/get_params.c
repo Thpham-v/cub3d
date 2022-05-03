@@ -6,15 +6,43 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 04:15:10 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/04/18 06:15:48 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/25 06:51:40 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	check_color_line(char *line)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+		if (line[i] != ' ' && line[i] != ',' && !ft_isdigit(line[i]))
+			return (0);
+	line += skip_space(line);
+	if (!ft_isdigit(*line))
+		return (0);
+	line = ft_strchr(line, ',');
+	if (!line)
+		return (0);
+	line++;
+	line += skip_space(line);
+	if (!ft_isdigit(*line))
+		return (0);
+	line = ft_strchr(line, ',');
+	if (!line)
+		return (0);
+	line++;
+	line += skip_space(line);
+	if (!ft_isdigit(*line))
+		return (0);
+	return (1);
+}
+
 void	get_path_texture(t_var *var, char *line, char **path)
 {
-	int i;
+	int	i;
 
 	if (!ft_strchr(line, '.') || !ft_strchr(line, '/') || *path != NULL)
 		ft_error(var, "Invalid path texture precision in .cub\n");
@@ -31,16 +59,16 @@ void	get_path_texture(t_var *var, char *line, char **path)
 	i = 0;
 	while (line[i] > 32 && line[i] < 127)
 		i++;
-	if (line[i + through_space(&line[i])] != '\0')
+	if (line[i + skip_space(&line[i])] != '\0')
 		ft_error(var, "Invalid path texture precision in .cub\n");
 	*path = ft_strndup(line, i);
 }
 
 void	get_rgb(t_var *var, char *line, int *color)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	if (line[1] == ' ')
 		line += 2;
@@ -52,11 +80,11 @@ void	get_rgb(t_var *var, char *line, int *color)
 	line = ft_strchr(line, ',') + 1;
 	g = ft_atoi(line);
 	line = ft_strchr(line, ',') + 1;
-	line += through_space(line);
+	line += skip_space(line);
 	b = ft_atoi(line);
 	while (ft_isdigit(*line))
 		line++;
-	line += through_space(line);
+	line += skip_space(line);
 	if (*line != '\0')
 		ft_error(var, "Invalid RGB precision in .cub\n");
 	if (r > 255 || g > 255 || b > 255)
@@ -66,7 +94,7 @@ void	get_rgb(t_var *var, char *line, int *color)
 
 void	get_map_params(char *line, t_var *var)
 {
-	line += through_space(line);
+	line += skip_space(line);
 	if (line[0] == 'S' && line[1] == 'O')
 		get_path_texture(var, line, &var->so);
 	else if (line[0] == 'N' && line[1] == 'O')
@@ -80,9 +108,5 @@ void	get_map_params(char *line, t_var *var)
 	else if (line[0] == 'F' && (line[1] == ' ' || ft_isdigit(line[1])))
 		get_rgb(var, line, &var->f);
 	else if (!is_empty(line))
-	{
-		printf("Invalid precision in .cub\n");
-		return ;
-	}
+		ft_error(var, "Invalid precision in .cub\n");
 }
-

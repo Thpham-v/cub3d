@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 12:35:52 by vintran           #+#    #+#             */
-/*   Updated: 2022/03/23 02:15:01 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/04/20 05:47:13 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, int len);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
+void		ft_putstr(char *str);
+void		ft_putchar(char c);
+char		*ft_strndup(const char *s, size_t n);
 
 #endif

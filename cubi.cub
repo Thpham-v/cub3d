@@ -1,0 +1,16 @@
+       C 87, 34, 142
+
+NO      ./textures/brick.xpm        
+SO ./textures/brick.xpm
+
+EA  ./textures/brick.xpm    
+    WE      ./textures/brick.xpm  
+
+F       70,     11, 03
+
+1111111111111111111
+1N000000000001
+11000000001111
+1000001111111
+10011111
+111

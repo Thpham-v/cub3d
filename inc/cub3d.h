@@ -6,7 +6,11 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:38:05 by thpham-v          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/05/03 05:59:26 by thpham-v         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/26 10:49:33 by thpham-v         ###   ########.fr       */
+>>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +37,7 @@
 # define ROTATE_L		65361
 # define ROTATE_R		65363
 
+<<<<<<< HEAD
 typedef struct s_mlx {
 	void			*mlx_ptr;
 	void			*mlx_win;
@@ -122,6 +127,31 @@ typedef struct s_var
 	t_mlx		mlx;
 	t_mlx		textures[4];
 	t_texel		texel;
+=======
+typedef struct s_var
+{
+	char	**map;
+	char	*line;
+	char	*temp;
+	int		nb_l;
+	int		nb_char;
+	int		fd;
+	int		pos_x;
+	int		pos_y;
+	int		x;
+	int		y;
+	int		count;
+	char	player_dir;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*sol;
+	char	*plafond;
+	int		c;
+	int		f;
+	int		what_line;
+>>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
 }				t_var;
 
 void		parsing_map(t_var *var);
@@ -144,6 +174,7 @@ int			ft_exit(t_var *var);
 void		ft_free_map(t_var *var);
 int			skip_space(char *str);
 int			is_empty(char *str);
+<<<<<<< HEAD
 void		init_raycasting(t_var *var);
 void		cub3d(t_var *var);
 int			key_press(int keycode, t_var *var);
@@ -161,3 +192,7 @@ void		set_ray(t_var *var, int x);
 void		mlx_destroy(t_var *var);
 
 #endif
+=======
+
+#endif
+>>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40

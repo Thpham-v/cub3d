@@ -6,11 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 06:17:08 by thpham-v          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/05/04 00:39:40 by thpham-v         ###   ########.fr       */
-=======
-/*   Updated: 2022/04/25 07:19:37 by thpham-v         ###   ########.fr       */
->>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
+/*   Updated: 2022/05/04 02:26:49 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +26,7 @@ int	is_empty(char *str)
 {
 	while (*str)
 	{
-<<<<<<< HEAD
 		if (*str != ' ' || *str != '\t')
-=======
-		if (*str != ' ')
->>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
 			return (0);
 		str++;
 	}
@@ -49,27 +41,6 @@ int	skip_space(char *str)
 	while (str[i] == ' ')
 		i++;
 	return (i);
-<<<<<<< HEAD
-=======
-}
-
-int	ft_exit(t_var *var)
-{
-	if (var->map)
-		ft_free_map(var);
-	if (var->line)
-		free(var->line);
-	free(var->temp);
-	if (var->no)
-		free(var->no);
-	if (var->so)
-		free(var->so);
-	if (var->we)
-		free(var->we);
-	if (var->ea)
-		free(var->ea);
-	exit(0);
->>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
 }
 
 void	ft_error(t_var *var, char *error_msg)
@@ -77,4 +48,19 @@ void	ft_error(t_var *var, char *error_msg)
 	ft_putstr("Error\n");
 	ft_putstr(error_msg);
 	ft_exit(var);
+}
+
+int	check_arround(t_var *var, int x, int y)
+{
+	if (var->map[x][y - 1] != '0' && var->map[x][y - 1] != '1')
+		return (0);
+	if (var->map[x][y + 1] != '0' && var->map[x][y + 1] != '1')
+		return (0);
+	if (var->map[x - 1][y] != '1' && ft_strlen(var->map[x - 1]) <= y)
+		return (0);
+	if (var->map[x - 1][y] != '0' && var->map[x - 1][y] != '1')
+		return (0);
+	if (var->map[x + 1][y] != '1' && ft_strlen(var->map[x + 1]) <= y)
+		return (0);
+	return (1);
 }

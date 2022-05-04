@@ -6,11 +6,7 @@
 #    By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 15:16:31 by thpham-v          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/05/04 00:44:31 by thpham-v         ###   ########.fr        #
-=======
-#    Updated: 2022/04/25 06:07:40 by thpham-v         ###   ########.fr        #
->>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
+#    Updated: 2022/05/04 01:55:11 by thpham-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +16,11 @@ SRC_DIR			=	./srcs/
 INC_DIR			=	./inc/cub3d.h
 LIBFT			=	./libft/
 SRCS			=	main.c					\
-<<<<<<< HEAD
 					parsing.c				\
-=======
-					parsing.c			\
->>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
 					get_next_line.c			\
 					get_next_line_utils.c	\
 					create_map.c			\
 					get_params.c			\
-<<<<<<< HEAD
 					utils.c					\
 					set_raycasting.c		\
 					cub3d.c					\
@@ -42,9 +33,6 @@ SRCS			=	main.c					\
 					events.c				\
 					display_wall_line.c		\
 					exit.c
-=======
-					utils.c
->>>>>>> d96357da57388ef11cc1c08d06da79cbae459b40
 					
 SRC_BASENAME	=	$(addprefix $(SRC_DIR), $(SRCS))		
 OBJS			=	$(SRC_BASENAME:.c=.o)

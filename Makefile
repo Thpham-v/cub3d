@@ -6,11 +6,11 @@
 #    By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 15:16:31 by thpham-v          #+#    #+#              #
-#    Updated: 2022/05/04 01:55:11 by thpham-v         ###   ########.fr        #
+#    Updated: 2022/05/04 02:47:22 by thpham-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	cub3d
+NAME			=	cub3D
 MLX_DIR			=	./minilibx-linux/
 SRC_DIR			=	./srcs/
 INC_DIR			=	./inc/cub3d.h

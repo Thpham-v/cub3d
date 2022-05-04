@@ -6,7 +6,7 @@
 /*   By: thpham-v <thpham-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 06:17:08 by thpham-v          #+#    #+#             */
-/*   Updated: 2022/05/04 03:00:15 by thpham-v         ###   ########.fr       */
+/*   Updated: 2022/05/04 03:12:30 by thpham-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ int	check_arround(t_var *var, int x, int y)
 		return (0);
 	if (var->map[x][y + 1] != '0' && var->map[x][y + 1] != '1')
 		return (0);
-	if (var->map[x - 1][y] != '1' && ft_strlen(var->map[x - 1]) <= y)
+	if (!var->map[x - 1]
+		|| var->map[x - 1][y] != '1' && ft_strlen(var->map[x - 1]) <= y)
 		return (0);
-	if (var->map[x - 1][y] != '0' && var->map[x - 1][y] != '1')
+	if (!var->map[x - 1]
+		|| var->map[x - 1][y] != '0' && var->map[x - 1][y] != '1')
 		return (0);
 	if (!var->map[x + 1]
 		|| var->map[x + 1][y] != '1' && ft_strlen(var->map[x + 1]) <= y)
